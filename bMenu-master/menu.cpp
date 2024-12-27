@@ -65,14 +65,29 @@ void create() {
     }
 }
 
+void read() {
+    if (pos >= 0) {
+        cout << "\n=== Data Mahasiswa ===\n";
+        for (int i = 0; i <= pos; ++i) {
+            cout << i + 1 << ". NIM: " << sikc[i].nim
+                 << " | Nama: " << sikc[i].nama
+                 << " | Alamat: " << sikc[i].alamat
+                 << " | IPK: " << sikc[i].ipk << endl;
+        }
+    } else {
+        cout << "Tidak ada data yang tersedia." << endl;
+    }
+}
+
 void menu() {
     int pilihan;
     do {
         cout << "\n=== Menu Program ===\n";
         cout << "1. Tambah Data Baru (Create)\n";
-        cout << "2. Tampilkan Data (Read)\n";
-        cout << "3. Perbaiki Data (Update)\n";
-        cout << "4. Keluar\n";
+        cout << "2. Tampilkan Semua Data (Read)\n";
+        cout << "3. Tampilkan Data Berdasarkan Indeks\n";
+        cout << "4. Perbaiki Data (Update)\n";
+        cout << "5. Keluar\n";
         cout << "Pilih menu: ";
         cin >> pilihan;
 
@@ -80,27 +95,30 @@ void menu() {
             case 1:
                 create();
                 break;
-            case 2: {
+            case 2:
+                read();
+                break;
+            case 3: {
                 int index;
                 cout << "Masukkan indeks data yang ingin ditampilkan (0-" << pos << "): ";
                 cin >> index;
                 tampilkanData(index);
                 break;
             }
-            case 3: {
+            case 4: {
                 int index;
                 cout << "Masukkan indeks data yang ingin diperbaiki (0-" << pos << "): ";
                 cin >> index;
                 perbaikanData(index);
                 break;
             }
-            case 4:
+            case 5:
                 cout << "Keluar dari program." << endl;
                 break;
             default:
                 cout << "Pilihan tidak valid. Coba lagi." << endl;
         }
-    } while (pilihan != 4);
+    } while (pilihan != 5);
 }
 
 int main() {
