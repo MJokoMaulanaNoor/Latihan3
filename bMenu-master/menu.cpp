@@ -59,6 +59,22 @@ void update(int p) {
     }
 }
 
+void deleteData(int p) {
+    if (p >= 0 && p <= pos) {
+        cout << "\nData yang akan dihapus:\n";
+        tampilkanData(p);
+
+        // Geser data setelah indeks p ke depan
+        for (int i = p; i < pos; ++i) {
+            sikc[i] = sikc[i + 1];
+        }
+        pos--; // Kurangi jumlah data
+        cout << "Data berhasil dihapus.\n";
+    } else {
+        cout << "Data tidak ditemukan pada posisi " << p << endl;
+    }
+}
+
 void create() {
     char lagi = 'y';
     while (lagi == 'y' || lagi == 'Y') {
@@ -90,7 +106,8 @@ void menu() {
         cout << "1. Tambah Data Baru (Create)\n";
         cout << "2. Tampilkan Semua Data (Read)\n";
         cout << "3. Perbarui Data (Update)\n";
-        cout << "4. Keluar\n";
+        cout << "4. Hapus Data (Delete)\n";
+        cout << "5. Keluar\n";
         cout << "Pilih menu: ";
         cin >> pilihan;
 
@@ -108,13 +125,20 @@ void menu() {
                 update(index);
                 break;
             }
-            case 4:
+            case 4: {
+                int index;
+                cout << "Masukkan indeks data yang ingin dihapus (0-" << pos << "): ";
+                cin >> index;
+                deleteData(index);
+                break;
+            }
+            case 5:
                 cout << "Keluar dari program." << endl;
                 break;
             default:
                 cout << "Pilihan tidak valid. Coba lagi." << endl;
         }
-    } while (pilihan != 4);
+    } while (pilihan != 5);
 }
 
 int main() {
