@@ -41,15 +41,19 @@ void masukanData() {
     }
 }
 
-void perbaikanData(int p) {
+void update(int p) {
     if (p >= 0 && p <= pos) {
+        cout << "\nData Sebelumnya:\n";
+        tampilkanData(p);
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "Perbaikan Nama: ";
+        cout << "Masukan data baru.\n";
+        cout << "Masukan Nama: ";
         getline(cin, sikc[p].nama);
-        cout << "Perbaikan Alamat: ";
+        cout << "Masukan Alamat: ";
         getline(cin, sikc[p].alamat);
-        cout << "Perbaikan IPK: ";
+        cout << "Masukan IPK: ";
         cin >> sikc[p].ipk;
+        cout << "Data berhasil diperbarui.\n";
     } else {
         cout << "Data tidak ditemukan pada posisi " << p << endl;
     }
@@ -85,9 +89,8 @@ void menu() {
         cout << "\n=== Menu Program ===\n";
         cout << "1. Tambah Data Baru (Create)\n";
         cout << "2. Tampilkan Semua Data (Read)\n";
-        cout << "3. Tampilkan Data Berdasarkan Indeks\n";
-        cout << "4. Perbaiki Data (Update)\n";
-        cout << "5. Keluar\n";
+        cout << "3. Perbarui Data (Update)\n";
+        cout << "4. Keluar\n";
         cout << "Pilih menu: ";
         cin >> pilihan;
 
@@ -100,25 +103,18 @@ void menu() {
                 break;
             case 3: {
                 int index;
-                cout << "Masukkan indeks data yang ingin ditampilkan (0-" << pos << "): ";
+                cout << "Masukkan indeks data yang ingin diperbarui (0-" << pos << "): ";
                 cin >> index;
-                tampilkanData(index);
+                update(index);
                 break;
             }
-            case 4: {
-                int index;
-                cout << "Masukkan indeks data yang ingin diperbaiki (0-" << pos << "): ";
-                cin >> index;
-                perbaikanData(index);
-                break;
-            }
-            case 5:
+            case 4:
                 cout << "Keluar dari program." << endl;
                 break;
             default:
                 cout << "Pilihan tidak valid. Coba lagi." << endl;
         }
-    } while (pilihan != 5);
+    } while (pilihan != 4);
 }
 
 int main() {
